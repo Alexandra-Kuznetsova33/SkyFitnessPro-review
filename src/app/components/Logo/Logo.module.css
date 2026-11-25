@@ -1,0 +1,24 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 220px;
+  height: 35px;
+}
+
+@media (max-width: 768px) {
+  .image {
+    width: 180px;
+    height: 29px;
+  }
+}
+
+@media (max-width: 480px) {
+  .image {
+    width: 150px;
+    height: 24px;
+  }
+}

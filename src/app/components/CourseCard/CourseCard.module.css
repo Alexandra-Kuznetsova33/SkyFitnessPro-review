@@ -1,0 +1,191 @@
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cover {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.coverImage {
+  object-fit: cover;
+}
+
+.coverFallback {
+  width: 100%;
+  height: 100%;
+}
+
+.addButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  z-index: 1;
+}
+
+.addButton svg {
+  width: 44px;
+  height: 44px;
+}
+
+.addButton:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.addButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--color-gray-light);
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.metaItem svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .page {
+    gap: 28px;
+  }
+
+  .banner {
+    padding: 20px;
+    min-height: 140px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .title {
+    font-size: 32px;
+    z-index: 2;
+  }
+
+  .bannerImageWrapper {
+    position: absolute;
+    right: -10px;
+    bottom: 0;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .bannerImage {
+    height: 100%;
+    width: auto;
+    max-height: 140px;
+    object-fit: contain;
+  }
+
+  .sectionTitle {
+    font-size: 24px;
+  }
+
+  .fittingList {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .fittingNumber {
+    font-size: 56px;
+  }
+
+  .fittingCard {
+    padding: 16px;
+    min-height: auto;
+  }
+
+  .directionsBox {
+    padding: 20px;
+  }
+  .directionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 20px;
+  }
+
+  .directionItem {
+    font-size: 14px;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .directionIcon {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+  }
+
+  .benefitsCard {
+    padding: 24px;
+  }
+
+  .benefitsTitle {
+    font-size: 32px;
+  }
+
+  .benefitItem {
+    font-size: 16px;
+  }
+}
