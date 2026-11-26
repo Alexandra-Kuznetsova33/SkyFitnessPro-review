@@ -111,8 +111,13 @@
   margin-top: 8px;
 }
 
-.progressButton:hover {
+.progressButton:hover:not(:disabled) {
   background: var(--color-primary-hover);
+}
+
+.progressButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .emptyExercises {
@@ -155,7 +160,6 @@
 
   .banner {
     padding: 40px 24px;
-    min-height: 180px;
   }
 
   .title {

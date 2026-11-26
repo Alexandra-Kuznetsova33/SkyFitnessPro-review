@@ -138,7 +138,12 @@ const coursesSlice = createSlice({
       .addCase(fetchMyCourses.rejected, (state, action) => {
         state.isMyCoursesLoading = false;
         state.myCoursesError = action.payload ?? 'Не удалось загрузить ваши курсы';
-      });
+      })
+      .addCase(removeCourse.fulfilled, (state, action) => {
+        state.myCourses = state.myCourses.filter((course) =>
+        action.payload.includes(course._id),
+        );
+      })
   },
 });
 
