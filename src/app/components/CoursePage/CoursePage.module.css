@@ -256,9 +256,31 @@
   padding: 60px 0;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1260px) {
   .fittingText {
     font-size: 20px;
+  }
+
+  .vectorImage {
+    width: 500px;
+  }
+
+  .vectorMask {
+    margin-top: 300px;
+  }
+
+  .runnerBlock {
+    margin-top: 50px;
+  }
+
+  .runnerImage {
+    width: 420px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .directionsGrid {
+    gap: 24px 94px;
   }
 
   .benefitsCard {
@@ -276,8 +298,9 @@
     font-size: 40px;
   }
 
+  .directionItem,
   .benefitItem {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .runnerBlock {
@@ -295,29 +318,18 @@
   .runnerImage {
     width: 350px;
   }
+
+  .addButton {
+    font-size: 16px;
+    max-width: 284px;
+  }
 }
+
 
 @media (max-width: 868px) {
-  .directionsBox {
-    padding: 20px;
-    border-radius: 20px;
+  .directionsGrid {
+    gap: 20px 64px;
   }
-
-  .fittingList {
-    gap: 12px;
-  }
-
-  .directionItem,
-  .benefitItem {
-    font-size: 17px;
-  }
-
-  .fittingText {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 768px) {
   .page {
     gap: 28px;
   }
@@ -335,11 +347,6 @@
     border-radius: 20px;
   }
 
-  .directionItem,
-  .benefitItem {
-    font-size: 16px;
-  }
-
   .fittingList {
     grid-template-columns: 1fr;
     gap: 17px;
@@ -349,14 +356,8 @@
     font-size: 56px;
   }
 
-  .addButton {
+   .fittingText {
     font-size: 16px;
-    padding: 16px 26px;
-    max-width: 284px;
-  }
-
-  .benefitsWrapper {
-    bottom: 0px;
   }
 
   .benefitsCard {
@@ -367,16 +368,12 @@
     font-size: 32px;
   }
 
-  .benefitItem {
-    font-size: 16px;
-  }
-
   .runnerImage {
     width: 313px;
   }
 }
 
-@media (max-width: 660px) {
+@media (max-width: 754px) {
   .benefitsWrapper {
     margin-top: 20px;
   }
@@ -401,10 +398,6 @@
     right: -70px;
   }
 
-  .directionsBox {
-    padding: 20px;
-    border-radius: 20px;
-  }
 
   .directionsGrid {
     grid-template-columns: 1fr;
@@ -447,31 +440,6 @@
 
   .fittingText {
     font-size: 18px;
-  }
-
-  .directionsBox {
-    padding: 20px;
-    border-radius: 20px;
-  }
-
-  .directionsGrid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .runnerBlock {
-    z-index: 0;
-  }
-
-  .sectionTitle {
-    font-size: 22px;
-  }
-
-  .runnerImage {
-    top: -140px;
-    width: 313px;
-    z-index: -5;
-    right: -70px;
   }
 
   .addButton {

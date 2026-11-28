@@ -1,12 +1,17 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { WorkoutProgressModal } from '../WorkoutProgressModal/WorkoutProgressModal';
 import { WorkoutProgressSuccessModal } from '../WorkoutProgressSuccessModal/WorkoutProgressSuccessModal';
 import { fetchCourseById } from '../../redux/coursesSlice';
 import { fetchWorkoutById, fetchCourseWorkouts } from '../../redux/workoutsSlice';
-import { fetchWorkoutProgressById } from '../../redux/progressSlice';
+import {
+  fetchWorkoutProgressById,
+  saveWorkoutProgressThunk,
+  fetchCourseProgress,
+} from '../../redux/progressSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { calcExerciseProgress } from '../../utils/calcExerciseProgress';
 import { getWorkoutTitle } from '../../utils/getWorkoutTitle';
@@ -33,6 +38,27 @@ export const WorkoutPage = ({ courseId, workoutId }: WorkoutPageProps) => {
 
   const [isProgressOpen, setIsProgressOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+
+  const [isFinishingEmpty, setIsFinishingEmpty] = useState(false);
+
+  const handleFinishEmptyWorkout = async () => {
+    setIsFinishingEmpty(true);
+    const action = await dispatch(
+      saveWorkoutProgressThunk({ courseId, workoutId, progressData: [] }),
+    );
+
+    if (saveWorkoutProgressThunk.rejected.match(action)) {
+      setIsFinishingEmpty(false);
+      const message = typeof action.payload === 'string' ? action.payload : null;
+      if (message) toast.error(message);
+      return;
+    }
+
+    await dispatch(fetchWorkoutProgressById({ courseId, workoutId }));
+    dispatch(fetchCourseProgress(courseId));
+    setIsFinishingEmpty(false);
+    setIsSuccessOpen(true);
+  };
 
   useEffect(() => {
     dispatch(fetchWorkoutById(workoutId));
@@ -119,8 +145,19 @@ export const WorkoutPage = ({ courseId, workoutId }: WorkoutPageProps) => {
           <button type="button" className={styles.progressButton} onClick={handleProgressClick}>
             {hasAnyProgress ? 'Обновить свой прогресс' : 'Заполнить свой прогресс'}
           </button>
+        ) : progress?.workoutCompleted ? (
+          <button type="button" className={styles.progressButton} disabled>
+            Тренировка завершена
+          </button>
         ) : (
-          <p className={styles.emptyExercises}>В этой тренировке пока нет упражнений</p>
+          <button
+            type="button"
+            className={styles.progressButton}
+            onClick={handleFinishEmptyWorkout}
+            disabled={isFinishingEmpty}
+          >
+            {isFinishingEmpty ? 'Сохранение...' : 'Завершить тренировку'}
+          </button>
         )}
       </section>
 
