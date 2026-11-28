@@ -60,9 +60,7 @@ const WorkoutProgressForm = ({ courseId, workoutId, onSaved }: WorkoutProgressFo
     }
 
     setIsSaving(true);
-    const action = await dispatch(
-      saveWorkoutProgressThunk({ courseId, workoutId, progressData }),
-    );
+    const action = await dispatch(saveWorkoutProgressThunk({ courseId, workoutId, progressData }));
     setIsSaving(false);
 
     if (saveWorkoutProgressThunk.rejected.match(action)) {
@@ -86,12 +84,17 @@ const WorkoutProgressForm = ({ courseId, workoutId, onSaved }: WorkoutProgressFo
             </label>
             <input
               id={`exercise-${exercise._id}`}
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
+              type="number"
+              min="0"
+              step="1"
               placeholder="0"
               value={inputs[index] ?? ''}
               onChange={(e) => handleChange(index, e.target.value)}
+              onKeyDown={(e) => {
+                if (['e', 'E', '+', '-', '.'].includes(e.key)) {
+                  e.preventDefault();
+                }
+              }}
               className={styles.input}
               disabled={isSaving}
             />
